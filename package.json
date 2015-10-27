@@ -1,0 +1,36 @@
+{
+  "name": "handyp",
+  "version": "0.0.1",
+  "description": "Handy Promise Type Function",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel/register test/**/*.js"
+  },
+  "dependencies": {
+    "mkdirp": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "babel": "*",
+    "chokidar": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoveKino/handyp.git"
+  },
+  "keywords": [
+    "handy",
+    "promise",
+    "function",
+    "fs",
+    "spawn",
+    "exec",
+    "mkdirp"
+  ],
+  "author": "ddchen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LoveKino/handyp/issues"
+  },
+  "homepage": "https://github.com/LoveKino/handyp#readme"
+}
