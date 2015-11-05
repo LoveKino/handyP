@@ -5,7 +5,8 @@ let fsp = {};
 
 let fsSet = ["rename", "chown", "link", "unlink", "rmdir",
     "mkdir", "readdir", "close", "open",
-    "write", "read", "readFile", "writeFile", "appendFile", "access"
+    "write", "read", "readFile", "writeFile", "appendFile", "access",
+    "stat"
 ];
 
 for (let i = 0; i < fsSet.length; i++) {

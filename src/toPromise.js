@@ -2,12 +2,12 @@
  *  define convert protocol
  *  f(..., callback)
  *        callback
- *                  err ... 
+ *                  err ...
  */
 let toPromise = (f, context) => (...y) => new Promise((resolve, reject) => {
     let callback = function(err, ...res) {
         if (err) {
-            return reject.apply(undefined, err);
+            return reject.apply(undefined, [err]);
         }
         resolve.apply(undefined, res);
     }

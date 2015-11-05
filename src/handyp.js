@@ -1,11 +1,19 @@
 import mkdirp from "mkdirp";
 import toPromise from "./toPromise";
 import fsp from "./fsp";
+import spawn from "./spawn";
+import exec from "./exec";
+import exist from "./exist";
+import request from "./request";
 
 var handy = {
     fs: fsp,
     mkdirp: toPromise(mkdirp),
-    toPromise
+    toPromise,
+    spawn,
+    exec,
+    exist,
+    request
 };
 
 export default handy;
