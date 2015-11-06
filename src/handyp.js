@@ -6,6 +6,8 @@ import exec from "./exec";
 import exist from "./exist";
 import request from "./request";
 
+import deletep from "./deletep";
+
 var handy = {
     fs: fsp,
     mkdirp: toPromise(mkdirp),
@@ -13,7 +15,8 @@ var handy = {
     spawn,
     exec,
     exist,
-    request
+    request,
+    deletep
 };
 
 export default handy;

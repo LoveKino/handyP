@@ -30,4 +30,22 @@ describe("base", () => {
         let res2 = await handyp.exist(path.join(__dirname, "../ignore/test"));
         assert.equal(res2, true);
     });
+
+    it("deletep", async () => {
+        try{
+          await handyp.mkdirp(path.join(__dirname, "../ignore/deletep/fakeDir/f1"));
+          await handyp.mkdirp(path.join(__dirname, "../ignore/deletep/fakeDir/f2"));
+          await handyp.fs.writeFile(
+            path.join(__dirname, "../ignore/deletep/fakeDir/f2/f3.js"),
+            "123",
+            "utf-8"
+          );
+
+          await handyp.deletep(path.join(__dirname, "../ignore/deletep/fakeDir/f2/f3.js"));
+          await handyp.deletep(path.join(__dirname, "../ignore/deletep"));
+        }
+        catch(err){
+          console.log(err);
+        }
+    });
 });

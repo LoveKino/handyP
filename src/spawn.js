@@ -23,7 +23,7 @@ let spawnp = (command, args, options, on) => new Promise(
         });
 
         child.on('close', function(code) {
-            resolve(infos);
+            resolve(infos, code);
         });
 
         child.on('error', function(err) {
