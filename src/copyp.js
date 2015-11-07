@@ -20,7 +20,7 @@ let copyp = async (src, target, opts = {}) => {
             await deletep(target);
         }
     }
-    opts.handler = normalHandler;
+    opts.handler = opts.handler || normalHandler;
     await copy (src, target, opts);
 }
 
@@ -35,17 +35,32 @@ let copy = async (src, target, opts) => {
 
 let copyFile = async (src, tar, opts) => {
     let cnt = await fsp.readFile(src, "utf-8");
-    await mkdirp(path.dirname(tar));
-    await fsp.writeFile(tar, cnt, "utf-8");
+    let info = opts.handler({
+        type: "file",
+        srcPath: src,
+        tarPath: tar,
+        source: cnt
+    });
+    info = info || {};
+    if(!info.tarPath) return;
+    await mkdirp(path.dirname(info.tarPath));
+    await fsp.writeFile(info.tarPath, info.source, "utf-8");
 }
 
 let copyDir = async (src, tar, opts) => {
-    await mkdirp(tar);
-    let paths = await fsp.readdir(src);
-    await concur(src, tar, paths);
+  let info = opts.handler({
+      type: "dir",
+      srcPath: src,
+      tarPath: tar
+  });
+  info = info || {};
+  if(!info.tarPath || !info.srcPath) return;
+    await mkdirp(info.tarPath);
+    let paths = await fsp.readdir(info.srcPath);
+    await concur(info.srcPath, info.tarPath, paths, opts);
 }
 
-let concur = (src, tar, paths) => new Promise((resolve, reject) => {
+let concur = (src, tar, paths, opts) => new Promise((resolve, reject) => {
     if(!paths.length) {
         resolve();
     }
@@ -54,7 +69,7 @@ let concur = (src, tar, paths) => new Promise((resolve, reject) => {
       let file = paths[i];
       let _src = path.join(src, file),
           _dst = path.join(tar, file);
-      copy (_src, _dst).then(() => {
+      copy (_src, _dst, opts).then(() => {
           counter++;
           if (counter === paths.length) {
               resolve();
