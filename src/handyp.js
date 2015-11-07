@@ -5,8 +5,8 @@ import spawn from "./spawn";
 import exec from "./exec";
 import exist from "./exist";
 import request from "./request";
-
 import deletep from "./deletep";
+import copyp from "./copyp";
 
 var handy = {
     fs: fsp,
@@ -16,7 +16,8 @@ var handy = {
     exec,
     exist,
     request,
-    deletep
+    deletep,
+    copyp
 };
 
 export default handy;
