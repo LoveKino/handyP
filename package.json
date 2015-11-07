@@ -1,6 +1,6 @@
 {
   "name": "handyp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Handy Promise Type Function",
   "main": "index.js",
   "scripts": {
